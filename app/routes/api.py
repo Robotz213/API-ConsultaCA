@@ -13,6 +13,9 @@ from datetime import timedelta
 # Selenium Imports
 from selenium.webdriver.common.by import By
 
+import unicodedata
+from datetime import datetime
+
 @app.route("/login", methods = ["POST"])
 def login():
     
@@ -48,6 +51,28 @@ def consulta_ca(ca: int):
     if not dbase:
         
         json_data = get_ca(ca)
+        
+        redata = {}
+        for column in CaTable.__table__.columns:
+            
+            redata.update({column.name: json_data.get(column.name)})
+            
+            if column.name == "validade":
+                dataformat = datetime.strptime(json_data.get(column.name), "%d/%m/%Y")
+                redata.update({column.name: dataformat})
+                
+        add_epi = CaTable(**redata)
+        db.session.add(add_epi)
+        db.session.commit()
+        
+        json_data = redata
+        
+    if dbase:
+        
+        json_data = {}
+        for column in CaTable.__table__.columns:
+            
+            json_data.update({column.name: getattr(dbase, column.name)})
     
     response = make_response(jsonify(json_data), 200)
     return response
@@ -63,6 +88,12 @@ def get_ca(ca: int) -> dict[str, str]:
     
     dicionario = {}
     
+    nome_epi = driver.find_element(By.CSS_SELECTOR, '#titulo-equipamento > div > h1').text
+    tipo_epi = driver.find_element(By.CSS_SELECTOR, '#titulo-equipamento > div > span').text
+    
+    dicionario.update({'nome_epi': nome_epi})
+    dicionario.update({'tipo_epi': tipo_epi})
+    
     for item in itens_produtos:
         
         if ":" in item.text:
@@ -75,15 +106,19 @@ def get_ca(ca: int) -> dict[str, str]:
                 "Marcar como Favorito", "Nome Fantasia", "Cidade/UF"]):
                 continue
             
-            if data_add == "CA":
-                data_add = data_add.replace("CA", "COD_CA")
-                
-            elif data_add == "Situação":
-                data_add = data_add.replace("Situação", "CA")    
-            
             info = data[1].replace("\n", "")
             if "vencerá" in info:
                 info = info.split("vencerá")[0]
+                
+            if data_add == "CA":
+                data_add = data_add.replace("CA", "COD_CA")
+                info = int(info)
+                
+            elif data_add == "Situação":
+                data_add = data_add.replace("Situação", "CA")   
+            
+            data_add = "".join([c for c in unicodedata.normalize(
+                'NFKD', data_add) if not unicodedata.combining(c)])
             
             dicionario.update({data_add.lower().replace(" ", "_"): info})
     

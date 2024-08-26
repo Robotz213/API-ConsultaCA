@@ -11,31 +11,35 @@ class CaTable(db.Model):
     cod_ca = db.Column(db.Integer)
     nome_epi = db.Column(db.String(length=64), unique=True)
     tipo_epi = db.Column(db.String(length=64))
-    valor_unitario = db.Column(db.Float)
-    vencimento = db.Column(db.DateTime, default=datetime.now(timezone('Etc/GMT+4')))
-
+    validade = db.Column(db.DateTime, default=datetime.now(timezone('Etc/GMT+4')))
+    aprovado_para = db.Column(db.Text)
+    cnpj_do_laboratorio = db.Column(db.Text)
+    cnpj_importador = db.Column(db.Text)
+    laudo = db.Column(db.Text)
+    marcacao = db.Column(db.Text)
+    natureza = db.Column(db.Text)
+    processo = db.Column(db.Text)
+    razao_social = db.Column(db.Text)
+    razao_social_importador = db.Column(db.Text)
+    referencias = db.Column(db.Text)
 
 {
-    "Aprovado Para": " PROTEÇÃO DO CRÂNIO E FACE DO USUÁRIO CONTRA RISCOS PROVENIENTES DE FONTES GERADORAS DE CALOR NOS TRABALHOS DE COMBATE A INCÊNDIO.",
-    "Avaliação Geral": "",
-    "CNPJ Importador": " 45.655.461/0001-30",
-    "CNPJ do Laboratório": " 10.000.000/0000-10",
-    "Cidade/UF": " DIADEMA/SP",
-    "Cor": " Diversas.",
-    "Deixe sua Avaliação": "",
-    "Feito com por SafetyTec Tecnologia e Inovação em Seg. do Trabalho LTDA. - CNPJ": "14.957.619/0001-01",
-    "Marcar como Favorito": "",
-    "Marcação": " Parte interna do casco.",
-    "Natureza": " Importado",
-    "Nome Fantasia": " MSA",
-    "CA": " 13037",
-    "Processo": " 19980212903202378",
-    "do Laudo": " SEI nº FF MSA 17",
-    "Razão Social": " SAFETY EQUIPMENT INSTITUTE",
-    "Razão Social Importador": " MSA DO BRASIL EQUIP E INSTRUMENTOS DE SEGURANCA LTDA",
-    "Referências": " CAPACETE PARA BOMBEIROS MSA CAIRNS 660",
-    "Registar Dúvida": "",
-    "Site": " http",
-    "Situação": " VÁLIDO",
-    "Validade": " 20/11/2028"
+    "aprovado_para": "PROTEÇÃO DO CRÂNIO E FACE DO USUÁRIO CONTRA RISCOS PROVENIENTES DE FONTES GERADORAS DE CALOR NOS TRABALHOS DE COMBATE A INCÊNDIO.",
+    "ca": "VÁLIDO",
+    "cnpj_do_laboratório": "10.000.000/0000-10",
+    "cnpj_importador": "45.655.461/0001-30",
+    "cod_ca": "13037",
+    "cor": "Diversas.",
+    "deixe_suaavaliação": "",
+    "feito_com_por_safetytec_tecnologia_e_inovação_em_seg._do_trabalho_ltda._-_cnpj": "14.957.619/0001-01",
+    "laudo": "SEI nº FF MSA 17",
+    "marcar_comofavorito": "",
+    "marcação": "Parte interna do casco.",
+    "natureza": "Importado",
+    "processo": "19980212903202378",
+    "razão_social": "SAFETY EQUIPMENT INSTITUTE",
+    "razão_social_importador": "MSA DO BRASIL EQUIP E INSTRUMENTOS DE SEGURANCA LTDA",
+    "referências": "CAPACETE PARA BOMBEIROS MSA CAIRNS 660",
+    "registardúvida": "",
+    "validade": "20/11/2028"
 }
