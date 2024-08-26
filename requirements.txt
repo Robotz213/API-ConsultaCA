@@ -1,0 +1,10 @@
+flask
+bcrypt
+pandas
+openpyxl
+selenium
+flask-mysqldb
+python-dotenv
+flask_sqlalchemy
+webdriver-manager
+flask-jwt-extended
