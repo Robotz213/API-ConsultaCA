@@ -44,7 +44,7 @@ def login():
 
 @app.route("/consulta_ca/<ca>", methods = ["GET"])
 @jwt_required()
-@limiter.limit("250 per minute")
+@limiter.limit("250/minute")
 def consulta_ca(ca: int):
     
     dbase = CaTable.query.filter(CaTable.cod_ca == ca).first()

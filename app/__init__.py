@@ -13,9 +13,11 @@ jwt = JWTManager()
 db = SQLAlchemy()
 
 limiter = Limiter(
-    key_func=lambda: get_jwt_identity() or get_remote_address(),  # Limitação por token JWT ou IP
-    default_limits=["5 per minute"]  # Limite de 5 requisições por minuto
-
+    key_func=lambda: get_jwt_identity or get_remote_address,  # Limitação por token JWT ou IP
+    default_limits=["5 per minute"],  # Limite de 5 requisições por minuto
+    storage_uri="memory://",
+    storage_options={"socket_connect_timeout": 30},
+    strategy="fixed-window", # or "moving-window"
 )
 
 app.secret_key = generate_id()
