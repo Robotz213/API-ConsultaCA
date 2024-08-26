@@ -105,6 +105,6 @@ CLOUDFLARED_TOKEN = "SEU_TOKEN_AQUI"
 #### A partir de `/app`, teremos:
 - [`Models`](./app/models/): Onde ficam os models e bind's do SQL.
 
-- [`Routes`](./app/routes/): Formulários do projeto, sempre mantendo separados por funções.
+- [`Routes`](./app/routes/): Rotas do projeto, sempre mantendo separados por funções.
 
 
