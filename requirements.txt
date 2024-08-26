@@ -3,8 +3,9 @@ bcrypt
 pandas
 openpyxl
 selenium
-flask-mysqldb
+flask_limiter
 python-dotenv
+flask-mysqldb
 flask_sqlalchemy
 webdriver-manager
 flask-jwt-extended

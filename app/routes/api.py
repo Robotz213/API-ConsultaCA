@@ -1,5 +1,6 @@
-from app import app
 from app import db
+from app import app
+from app import limiter
 
 from app import jwt
 from flask import make_response, jsonify, request
@@ -43,6 +44,7 @@ def login():
 
 @app.route("/consulta_ca/<ca>", methods = ["GET"])
 @jwt_required()
+@limiter.limit("250 per minute")
 def consulta_ca(ca: int):
     
     dbase = CaTable.query.filter(CaTable.cod_ca == ca).first()
