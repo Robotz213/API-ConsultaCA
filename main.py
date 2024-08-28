@@ -22,7 +22,14 @@ def install_cloudflared() -> str:
 
 
 def configure_tunnel(token: str, binary_name: str):
+    
     print("Configurando o Cloudflared Tunnel...")
+    
+    try:
+        subprocess.run([f'{binary_name}', 'service', 'uninstall'])
+    except:
+        pass
+        
     subprocess.run([f'{binary_name}', 'service', 'install', token])
 
 
