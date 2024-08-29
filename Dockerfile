@@ -1,7 +1,7 @@
 FROM python:3
 
 COPY . /API-Consulta
-WORKDIR /GuardEPI
+WORKDIR /API-Consulta
 
 RUN pip install -r requirements.txt
 
