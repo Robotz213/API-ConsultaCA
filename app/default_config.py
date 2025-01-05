@@ -1,13 +1,14 @@
-from dotenv import dotenv_values
-from uuid import uuid4
 import os
+from uuid import uuid4
 
-host_db = dotenv_values()['host']
-login_db = dotenv_values()['login']
-passwd_db = dotenv_values()['password']
-database_name = dotenv_values()['database']
+from dotenv import dotenv_values
 
-## PARAMETROS PARA O APP FLASK
+host_db = dotenv_values()["host"]
+login_db = dotenv_values()["login"]
+passwd_db = dotenv_values()["password"]
+database_name = dotenv_values()["database"]
+
+# PARAMETROS PARA O APP FLASK
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SESSION_COOKIE_HTTPONLY = False
 SQLALCHEMY_DATABASE_URI = f"mysql://{login_db}:{passwd_db}@{host_db}/{database_name}"

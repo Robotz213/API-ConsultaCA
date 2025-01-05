@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "api-consultaca"
+version = "0.1.0"
+description = ""
+authors = ["Robotz213 <nicholas@robotz.dev>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+redis = "^5.2.1"
+flask = "^3.1.0"
+bcrypt = "^4.2.1"
+pandas = "^2.2.3"
+openpyxl = "^3.1.5"
+selenium = "^4.27.1"
+flask-limiter = "^3.9.2"
+python-dotenv = "^1.0.1"
+flask-mysqldb = "^2.0.0"
+flask-sqlalchemy = "^3.1.1"
+webdriver-manager = "^4.0.2"
+flask-jwt-extended = "^4.7.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+profile = "black" # Garante compatibilidade com Black
+line_length = 88  # O mesmo limite de linha do Black
+
+[tool.bandit]
+exclude_dirs = ["tests", ".venv"]
