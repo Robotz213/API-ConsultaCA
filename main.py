@@ -1,5 +1,22 @@
 import os
 
+"""
+This script is designed to install and configure Cloudflared on a Linux system and run a Flask application.
+
+Functions:
+    install_cloudflared() -> str:
+        Downloads and installs the Cloudflared binary for Linux.
+        Returns the name of the installed binary.
+
+    configure_tunnel(token: str, binary_name: str):
+        Configures the Cloudflared tunnel using the provided token and binary name.
+
+Main Execution:
+    If the script is run as the main module, it attempts to load environment variables,
+    retrieve the Cloudflared token, install Cloudflared, and configure the tunnel.
+    If the platform is not Linux or the token is not found, it runs the Flask application.
+"""
+
 # import platform
 
 # from dotenv import load_dotenv

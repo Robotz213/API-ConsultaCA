@@ -3,6 +3,29 @@ from uuid import uuid4
 
 from dotenv import dotenv_values
 
+"""
+This module sets up the default configuration for a Flask application.
+
+Configuration parameters:
+- SQLALCHEMY_TRACK_MODIFICATIONS: Disables SQLAlchemy modification tracking.
+- SESSION_COOKIE_HTTPONLY: Sets the HttpOnly flag for session cookies.
+- SQLALCHEMY_DATABASE_URI: The database URI for SQLAlchemy, constructed using environment variables.
+- SESSION_COOKIE_SECURE: Ensures session cookies are only sent over HTTPS.
+- PREFERRED_URL_SCHEME: Sets the preferred URL scheme to HTTPS.
+- CHROMEDRIVER_PATH: Path to the ChromeDriver executable.
+- JWT_SECRET_KEY: A randomly generated secret key for JWT.
+- SRC_IMG_PATH: Path to the source images directory.
+
+Environment variables (loaded from .env file):
+- host: Database host.
+- login: Database login username.
+- password: Database login password.
+- database: Database name.
+
+Directories:
+- CHROMEDRIVER_PATH: Ensures the ChromeDriver path directory exists.
+"""
+
 host_db = dotenv_values()["host"]
 login_db = dotenv_values()["login"]
 passwd_db = dotenv_values()["password"]

@@ -6,6 +6,27 @@ from app import db
 
 
 class CaTable(db.Model):
+    """
+    CaTable represents a table in the database for storing information about CA (Certificate of Approval).
+
+    Attributes:
+        id (int): Primary key, unique identifier for each record.
+        ca (str): CA number.
+        cod_ca (int): CA code.
+        nome_epi (str): Name of the EPI (Personal Protective Equipment), must be unique.
+        tipo_epi (str): Type of the EPI.
+        validade (datetime): Expiration date of the CA, defaults to the current date and time in the GMT+4 timezone.
+        aprovado_para (str): Approved for specific uses.
+        cnpj_do_laboratorio (str): CNPJ of the laboratory.
+        cnpj_importador (str): CNPJ of the importer.
+        laudo (str): Report or certificate.
+        marcacao (str): Marking information.
+        natureza (str): Nature of the CA.
+        processo (str): Process information.
+        razao_social (str): Corporate name of the company.
+        razao_social_importador (str): Corporate name of the importer.
+        referencias (str): References related to the CA.
+    """
 
     id = db.Column(db.Integer, primary_key=True, unique=True)
     ca = db.Column(db.String(length=64))

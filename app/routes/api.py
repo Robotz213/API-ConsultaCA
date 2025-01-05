@@ -14,6 +14,17 @@ from app.webdriver import DriverLauncher
 
 @app.route("/login", methods=["POST"])
 def login():
+    """
+    Handles user login and JWT authentication.
+    This function retrieves the username and password from the request JSON,
+    verifies the credentials against the database, and generates a JWT token
+    if the authentication is successful.
+    Returns:
+        Response: A JSON response containing the JWT token and a 200 status code
+                  if authentication is successful.
+                  A JSON response with an error message and a 401 status code
+                  if authentication fails.
+    """
 
     # Sistema de autenticação JWT
     user = request.json.get("username", None)
@@ -42,6 +53,14 @@ def login():
 @jwt_required()
 @limiter.limit("250/minute")
 def consulta_ca(ca: int):
+    """
+    Consulta um Certificado de Aprovação (CA) na base de dados.
+    Args:
+        ca (int): O código do Certificado de Aprovação (CA) a ser consultado.
+    Returns:
+        Response: Um objeto de resposta Flask contendo os dados do CA em formato JSON.
+                  Se o CA não for encontrado, retorna uma mensagem de erro com status 404.
+    """
 
     dbase = CaTable.query.filter(CaTable.cod_ca == int(ca)).first()
     json_data = {}
@@ -81,6 +100,22 @@ def consulta_ca(ca: int):
 
 
 def get_ca(ca: int) -> dict[str, str]:
+    """
+    Fetches and parses data from a specific CA (Certificate of Approval) webpage.
+
+    Args:
+        ca (int): The CA number to be queried.
+
+    Returns:
+        dict[str, str]: A dictionary containing parsed information about the CA.
+            The keys include:
+                - "nome_epi": Name of the equipment.
+                - "tipo_epi": Type of the equipment.
+                - Other keys dynamically parsed from the webpage, such as:
+                    - "cod_ca": CA code.
+                    - "ca": CA status.
+                    - Additional information fields parsed from the webpage.
+    """
 
     driver = DriverLauncher()
 
